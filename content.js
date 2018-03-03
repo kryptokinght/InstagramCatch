@@ -1,10 +1,12 @@
+console.log("Instagram Catcher content.js loaded!");
 //content.js deals with the webpage in the current opened tab
 var i = 0, temp, tops = [], img_info = [];
 chrome.runtime.onMessage.addListener(gotMessage);
 //receives a message from popup.js asking for the image URL scraped from
 // webpage in the current tab
-function gotMessage(message, sender, sendResopnse) {
 
+function gotMessage(message, sender, sendResopnse) {
+  //assuming no videos are present on the homepage
   if("https://www.instagram.com/" === message.tabURL) {
     tops = [];
     var ims = document.getElementsByTagName('img');
@@ -30,9 +32,10 @@ function gotMessage(message, sender, sendResopnse) {
     sendResopnse({ txt:tops[index][1] });
   }
   
-  else 
+  else //need to be improved
   {
     var vids = document.getElementsByTagName('video');
+    //if videos present
     if(vids.length)
       sendResopnse({txt : vids[0].src});
     else {

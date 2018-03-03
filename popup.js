@@ -31,37 +31,39 @@ function gotTabs(tabs) {
   //after sending the message, the content.js sends a response
   chrome.tabs.sendMessage(tabs[0].id, msg, function(response) {
     if(response != undefined) {
-      
       //create image element
       var imgx = document.createElement("img");
       console.log(response.txt);
-      imgx.setAttribute('src',response.txt);
+      
+      /*imgx.setAttribute('src',response.txt);
       imgx.style.width = 30;
       imgx.style.height = 30;
       imgx.setAttribute('crossorigin','Anonymous');
-      var image = new Image();
-      image.crossOrigin = "Anonymous";
+      
+      var image = new Image(); //00000
+      image.crossOrigin = "Anonymous"; //0000
       document.getElementsByTagName('body')[0].appendChild(imgx);
 
-var img = document.getElementById("scream");
+      var img = document.getElementById("scream");
 
       var imgData = getBase64Image(img);
       console.log(imgData);
-      /*localStorage.setItem("imgData", imgData);
+      localStorage.setItem("imgData", imgData);
       var dataImage = localStorage.getItem('imgData');
       localStorage.removeItem('imgData');
       console.log("*************************");
-      console.log(dataImage);*/
+      console.log(dataImage);
       var a = document.createElement('a');
       imgx.setAttribute('src', "data:image/png;base64," + imgData);
-      a.setAttribute('href', "data:image/png;base64," + imgData);
+      a.setAttribute('href', "data:image/png;base64," + imgData);*/
+      var a = document.createElement('a');
+      a.setAttribute('href', response.txt);
       a.setAttribute('id', 'kappa');
       a.setAttribute('download', '');
       document.getElementsByTagName('body')[0].appendChild(a);
       let element = document.getElementById("kappa");
       element.click();
       element.parentNode.removeChild(element);
-      
     }
     else {
       let h3 = document.getElementsByTagName('h3');
